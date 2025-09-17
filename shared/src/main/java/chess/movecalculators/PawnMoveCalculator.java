@@ -13,25 +13,37 @@ public class PawnMoveCalculator extends MoveCalculator {
     };
 
     int direction;
+    boolean canMoveTwice = false;
 
     public PawnMoveCalculator(ChessPosition position, ChessBoard board) {
         super(position, board);
 
         if (board.getPiece(position).getTeamColor() == ChessGame.TeamColor.WHITE) {
             direction = 1;
+
+            if (row == 2) {
+                canMoveTwice = true;
+            }
         } else {
             direction = -1;
+
+            if (row == 7) {
+                canMoveTwice = true;
+            }
         }
     }
 
     @Override
     public ArrayList<ChessMove> getMoves() {
         // Move one forward
-        if (!isCollision(row + direction, col)) {
+        if (isInBounds(row + direction, col) && !isCollision(row + direction, col)) {
             addPawnMove(row + direction, col);
-        }
 
-        // Move two forward
+            // Move two forward
+            if (isInBounds(row + direction*2, col) && !isCollision(row + direction*2, col) && canMoveTwice) {
+                addPawnMove(row + direction*2, col);
+            }
+        }
 
         // Captures
 

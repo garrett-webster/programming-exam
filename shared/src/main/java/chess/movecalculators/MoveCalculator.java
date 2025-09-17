@@ -56,7 +56,7 @@ public class MoveCalculator {
         }
     }
 
-    private boolean isInBounds(int row, int col) {
+    public boolean isInBounds(int row, int col) {
         return row > 0 && row < 9 && col > 0 && col < 9;
     }
 
