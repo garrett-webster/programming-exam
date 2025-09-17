@@ -1,6 +1,7 @@
 package chess;
 
-import java.util.ArrayList;
+import chess.movecalculators.*;
+
 import java.util.Collection;
 import java.util.Objects;
 
@@ -12,9 +13,9 @@ import java.util.Objects;
  */
 public class ChessPiece {
     ChessGame.TeamColor teamColor;
-    ChessPiece.PieceType type;
+    PieceType type;
 
-    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+    public ChessPiece(ChessGame.TeamColor pieceColor, PieceType type) {
         this.teamColor = pieceColor;
         this.type = type;
     }
@@ -53,7 +54,22 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        return new ArrayList<>();
+        MoveCalculator moveCalculator = null;
+        if (type == PieceType.KING) {
+            moveCalculator = new KingMoveCalculator(myPosition, board);
+        } else if (type == PieceType.QUEEN) {
+            moveCalculator = new QueenMoveCalculator(myPosition, board);
+        } else if (type == PieceType.BISHOP) {
+            moveCalculator = new BishopMoveCalculator(myPosition, board);
+        } else if (type == PieceType.KNIGHT) {
+            moveCalculator = new KnightMoveCalculator(myPosition, board);
+        } else if (type == PieceType.ROOK) {
+            moveCalculator = new RookCalculator(myPosition, board);
+        } else if (type == PieceType.PAWN) {
+            moveCalculator = new PawnMoveCalculator(myPosition, board);
+        }
+
+        return moveCalculator.getMoves();
     }
 
     @Override

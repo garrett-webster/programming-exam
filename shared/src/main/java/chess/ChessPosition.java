@@ -9,6 +9,17 @@ import java.util.Objects;
  * signature of the existing methods.
  */
 public class ChessPosition {
+    String[] columnStrings = {
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+    };
+
     int row;
     int col;
 
@@ -45,5 +56,10 @@ public class ChessPosition {
     @Override
     public int hashCode() {
         return Objects.hash(row, col);
+    }
+
+    @Override
+    public String toString() {
+        return columnStrings[col - 1]+row;
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
  * signature of the existing methods.
  */
 public class ChessBoard {
-    ChessPiece[][] squares;
+    public ChessPiece[][] squares;
     ChessPiece.PieceType[] backRank = {
         ChessPiece.PieceType.ROOK,
         ChessPiece.PieceType.KNIGHT,
