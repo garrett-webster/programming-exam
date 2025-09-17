@@ -48,6 +48,14 @@ public class MoveCalculator {
         }
     }
 
+    public void addMovesFromOffsets(int[][] offsets) {
+        for (int[] offset: offsets) {
+            if (isInBounds(row + offset[0], col + offset[1])){
+                checkCollisionAndAddMove(row + offset[0], col + offset[1]);
+            }
+        }
+    }
+
     private boolean isInBounds(int row, int col) {
         return row > 0 && row < 9 && col > 0 && col < 9;
     }
