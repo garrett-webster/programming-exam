@@ -15,6 +15,13 @@ public class MoveCalculator {
             {-1,-1}
     };
 
+    int[][] straightModifiers = {
+            {1,0},
+            {-1,0},
+            {0, 1},
+            {0, -1}
+    };
+
     ArrayList<ChessMove> moves;
     ChessPosition position;
     ChessBoard board;
